@@ -15,11 +15,18 @@ struct LocationsView: View {
             
             NavigationView {
                 List {
-                    ForEach(model.restaurants, id: \.self) {
-                        RestaurantView(
-                            RestaurantLocation(city: $0.city,
-                                               neighborhood: $0.neighborhood,
-                                               phoneNumber: $0.phoneNumber))
+                    ForEach(model.restaurants, id: \.self) { rest in
+                        NavigationLink(destination:
+                            ReservationForm(
+                                RestaurantLocation(city: rest.city,
+                                                   neighborhood: rest.neighborhood,
+                                                   phoneNumber: rest.phoneNumber)))
+                        {
+                                RestaurantView(
+                                RestaurantLocation(city: rest.city,
+                                                   neighborhood: rest.neighborhood,
+                                                   phoneNumber: rest.phoneNumber))
+                        }
                     }
                 } // 3
                 .navigationBarTitle("")
