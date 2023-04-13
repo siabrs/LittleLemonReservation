@@ -7,7 +7,7 @@ struct LocationsView: View {
             LittleLemonLogo() // 1
                 .padding(.top, 50)
             
-            EmptyView() // 2
+            (model.displayingReservationForm ? Text("Reservation Details") : Text("Select a location"))
             .padding([.leading, .trailing], 40)
             .padding([.top, .bottom], 8)
             .background(Color.gray.opacity(0.2))
