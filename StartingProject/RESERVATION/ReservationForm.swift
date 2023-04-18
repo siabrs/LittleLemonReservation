@@ -51,6 +51,10 @@ struct ReservationForm: View {
                                   formatter: NumberFormatter())
                         .keyboardType(.numberPad)
                         // add a modifier here
+                        .onChange(of: party) { value in
+                            party = value == 0 ? 1 : value
+                            party = value > 20 ? 20: value
+                        }
                     }
                     
                     
