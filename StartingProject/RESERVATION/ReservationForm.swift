@@ -121,10 +121,8 @@ struct ReservationForm: View {
                         .padding([.top, .bottom], 20)
                     }
                     
-                    
-                    // add the RESERVE button
                     Button(action: {
-
+                        validateForm()
                     }, label: {
                         Text("CONFIRM RESERVATION")
                     })
@@ -151,8 +149,12 @@ struct ReservationForm: View {
                 model.reservation = temporaryReservation
             }
             
-            // add an alert after this line
-            
+            .alert(isPresented: $showFormInvalidMessage) {
+                        Alert(
+                            title: Text("Error"),
+                            message: Text(errorMessage),
+                            dismissButton: .default(Text("Cancel")))
+                    }
         }
         .onAppear {
             model.displayingReservationForm = true
