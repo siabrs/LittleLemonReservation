@@ -7,26 +7,16 @@ struct LocationsView: View {
             LittleLemonLogo() // 1
                 .padding(.top, 50)
             
-            (model.displayingReservationForm ? Text("Reservation Details") : Text("Select a location"))
+           Text(model.displayingReservationForm ? "Reservation Details" : "Select a location")
             .padding([.leading, .trailing], 40)
             .padding([.top, .bottom], 8)
             .background(Color.gray.opacity(0.2))
             .cornerRadius(20)
             
             NavigationView {
-                List {
-                    ForEach(model.restaurants, id: \.self) { rest in
-                        NavigationLink(destination:
-                            ReservationForm(
-                                RestaurantLocation(city: rest.city,
-                                                   neighborhood: rest.neighborhood,
-                                                   phoneNumber: rest.phoneNumber)))
-                        {
-                                RestaurantView(
-                                RestaurantLocation(city: rest.city,
-                                                   neighborhood: rest.neighborhood,
-                                                   phoneNumber: rest.phoneNumber))
-                        }
+                List(model.restaurants, id: \.self) { rest in
+                        NavigationLink(destination: ReservationForm(rest)) {
+                                RestaurantView(rest)
                     }
                 } // 3
                 .navigationBarTitle("")
