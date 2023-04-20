@@ -14,19 +14,9 @@ struct LocationsView: View {
             .cornerRadius(20)
             
             NavigationView {
-                List {
-                    ForEach(model.restaurants, id: \.self) { rest in
-                        NavigationLink(destination:
-                            ReservationForm(
-                                RestaurantLocation(city: rest.city,
-                                                   neighborhood: rest.neighborhood,
-                                                   phoneNumber: rest.phoneNumber)))
-                        {
-                                RestaurantView(
-                                RestaurantLocation(city: rest.city,
-                                                   neighborhood: rest.neighborhood,
-                                                   phoneNumber: rest.phoneNumber))
-                        }
+                List(model.restaurants, id: \.self) { rest in
+                        NavigationLink(destination: ReservationForm(rest)) {
+                                RestaurantView(rest)
                     }
                 } // 3
                 .navigationBarTitle("")
